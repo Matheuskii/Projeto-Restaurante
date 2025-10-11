@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Breavure</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Para Lanches</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
   <!-- ========== HEADER ========== -->
   <header>
-    <div class="logo">Breavure</div>
+    <div class="logo">Para Lanches</div>
 
     <nav class="navbar">
       <a href="#home">Home</a>
       <a href="#sobre">Sobre Nós</a>
       <a href="#menu">Menu</a>
+      <a href="./cardapio.html">Cardapio</a>
       <a href="#contato">Contato</a>
-      <a href="#cadastro">Cadastro</a>
+  <a href="#login">Login</a>
     </nav>
 
     <div class="hamburger" id="hamburger">
@@ -37,7 +40,13 @@
   <!-- ========== SOBRE NÓS ========== -->
   <section id="sobre" class="sobre">
     <h2>Sobre Nós</h2>
-    <p>Breavure é um restaurante que une sofisticação, sabores refinados e uma carta de vinhos premiada, oferecendo uma experiência inesquecível para nossos clientes.</p>
+    <h3 class="subtitulo">🌿 Nossa história</h3>
+
+    <p class="lead">A Para Lanches nasceu da paixão pela gastronomia e do desejo de oferecer uma experiência única a cada
+      cliente. Unimos sabores sofisticados, ingredientes selecionados e um ambiente acolhedor para transformar cada refeição
+      em um momento especial. Inspirados por técnicas internacionais e pelo toque autêntico da cozinha brasileira, nossos
+      pratos são criados com criatividade, técnica e carinho. Aqui, cada detalhe importa — do aroma à apresentação. Viva
+      uma experiência que une sabor, estilo e exclusividade.</p>
   </section>
 
   <!-- ========== MENU COM PESQUISA ========== -->
@@ -64,13 +73,19 @@
     </div>
   </section>
 
-  <!-- ========== ÁREA DE CADASTRO ========== -->
-  <section id="cadastro" class="cadastro">
-    <h2>Cadastre-se para receber novidades</h2>
-    <form id="form-cadastro">
-      <input type="text" placeholder="Nome" required>
-      <input type="email" placeholder="E-mail" required>
-      <button type="submit">Cadastrar</button>
+  <!-- ========== TELA DE LOGIN ========== -->
+  <section id="login" class="login">
+    <h2>Entrar</h2>
+    <h3 class="subtitulo">Acesse sua conta</h3>
+
+    <form id="form-login">
+      <input type="email" id="email" placeholder="E-mail" required>
+      <input type="password" id="senha" placeholder="Senha" required>
+      <div class="form-row">
+        <label><input type="checkbox" id="lembrar"> Lembrar-me</label>
+        <a class="forgot-link" href="#">Esqueci a senha</a>
+      </div>
+      <button type="submit">Entrar</button>
     </form>
     <p id="mensagem"></p>
   </section>
@@ -83,9 +98,10 @@
   </section>
 
   <footer>
-    &copy; 2025 Breavure Todos os direitos reservados.
+    &copy; 2025 Para Lanches Todos os direitos reservados.
   </footer>
 
-  <script src="script.js"></script>
+  <script src="js/script.js"></script>
 </body>
+
 </html>
