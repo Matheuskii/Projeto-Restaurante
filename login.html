@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login — Para Lanches</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">
+      <a href="index.html">
+        <img src="imgs/Para Lanches.png" alt="Para Lanches" class="site-logo">
+      </a>
+    </div>
+  </header>
+
+  <main class="login-page">
+    <div class="login-box">
+      <img src="imgs/Para Lanches.png" alt="Para Lanches" class="site-logo big">
+      <h2>Entrar</h2>
+      <h3 class="subtitulo">Acesse sua conta</h3>
+
+      <form id="form-login">
+        <input type="email" id="email" placeholder="E-mail" required>
+        <input type="password" id="senha" placeholder="Senha" required>
+        <div class="form-row">
+          <label><input type="checkbox" id="lembrar"> Lembrar-me</label>
+          <a class="forgot-link" href="#">Esqueci a senha</a>
+        </div>
+        <button type="submit">Entrar</button>
+      </form>
+      <p id="mensagem"></p>
+    </div>
+  </main>
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>

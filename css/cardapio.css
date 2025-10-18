@@ -1,4 +1,3 @@
-/* Estilos específicos do cardápio — seguem o conceito suave do restaurante */
 :root{
   --bg: #0f1720;
   --muted-gold: #bfa46a;
@@ -63,7 +62,7 @@ body {
 }
 
 .prato::before{
-  content: '\1F374'; /* emoji de comida genérico */
+  content: '\1F374'; 
   font-size: 20px;
   margin-right: 8px;
 }
@@ -72,6 +71,20 @@ body {
   margin: 0;
   font-size: 18px;
   color: var(--muted-gold);
+}
+
+.prato img{
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.45);
+}
+
+.prato p{
+  margin: 0;
+  font-size: 14px;
+  color: rgba(214,222,227,0.95);
 }
 
 .prato p{
