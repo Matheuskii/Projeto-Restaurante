@@ -1,0 +1,182 @@
+/* Estilos do menu do usuário */
+.user-menu {
+  position: relative;
+  display: inline-block;
+}
+
+.user-avatar {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.user-avatar:hover {
+  color: var(--secondary-color);
+}
+
+.user-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  min-width: 200px;
+  display: none;
+  z-index: 1001;
+}
+
+.user-menu:hover .user-dropdown {
+  display: block;
+}
+
+.user-info {
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  color: var(--text-color);
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-item:hover {
+  background-color: var(--hover-color);
+  border-radius: 4px;
+}
+
+.btn-logout {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--danger-color);
+}
+
+/* Estilos da sidebar */
+.user-sidebar {
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 300px;
+  height: 100vh;
+  background: #ffffff;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.15);
+  transition: right 0.3s ease;
+  z-index: 1002;
+  padding: 1rem;
+  color: #333333;
+}
+
+.user-sidebar.active {
+  right: 0;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 2rem;
+}
+
+.close-sidebar {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #666666;
+  transition: color 0.3s ease;
+}
+
+.close-sidebar:hover {
+  color: #333333;
+}
+
+.user-profile {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.profile-avatar {
+  font-size: 4rem;
+  color: #007bff;
+  margin-bottom: 1rem;
+}
+
+.profile-name {
+  margin: 0;
+  color: #333333;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.profile-email {
+  color: #666666;
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  color: #444444;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.sidebar-item:hover {
+  background-color: #f0f2f5;
+  color: #007bff;
+}
+
+.sidebar-item i {
+  width: 20px;
+  color: #666666;
+}
+
+.sidebar-item:hover i {
+  color: #007bff;
+}
+
+.btn-logout {
+  color: #dc3545;
+  border-top: 1px solid #eee;
+  margin-top: 1rem;
+  padding-top: 1rem;
+}
+
+.btn-logout:hover {
+  background-color: #fff1f1;
+  color: #dc3545;
+}
+
+.btn-logout:hover i {
+  color: #dc3545;
+}

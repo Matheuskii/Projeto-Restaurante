@@ -5,12 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cardápio — Para Lanches</title>
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/cardapio.css">
-  <style>
-    /* ajustes locais rápidos */
-    .prato { cursor: default; }
-  </style>
+  <link rel="stylesheet" href="/public/css/main.css">
+  <link rel="stylesheet" href="/public/css/menu.css">
+  <link rel="stylesheet" href="/public/css/effects.css">
+  <link rel="stylesheet" href="/public/css/components.css">
 </head>
 
 <body>
@@ -36,15 +34,86 @@
 
       <input type="text" id="pesquisa" placeholder="Pesquisar prato..." onkeyup="filtrarPratos()">
 
-      <div class="pratos" id="lista-pratos">
-        <div class="prato">Risoto de Cogumelos</div>
-        <div class="prato">Filé Mignon ao Molho Bordô</div>
-        <div class="prato">Salmão Grelhado com Ervas</div>
-        <div class="prato">Pasta ao Pesto de Manjericão</div>
-        <div class="prato">Bife à Parmegiana</div>
-        <div class="prato">Salada Caesar</div>
-        <div class="prato">Polenta Cremosa com Ragu</div>
-        <div class="prato">Tiramisu</div>
+      <div class="cardapio-container" id="lista-pratos">
+        <div class="card-produto">
+          <img src="imgs/risoto.jpg" alt="Risoto de Cogumelos" class="produto-img">
+          <div class="produto-info">
+            <h3 class="produto-nome">Risoto de Cogumelos</h3>
+            <p class="produto-preco">R$ 68,00</p>
+            <button class="btn-descricao">Ver Descrição</button>
+            <p class="produto-descricao">Cremoso risoto italiano preparado com mix de cogumelos frescos, finalizado com manteiga e parmesão.</p>
+          </div>
+        </div>
+
+        <div class="card-produto">
+          <img src="./imgs/file.jpg" alt="Filé Mignon ao Molho Bordô" class="produto-img">
+          <div class="produto-info">
+            <h3 class="produto-nome">Filé Mignon ao Molho Bordô</h3>
+            <p class="produto-preco">R$ 89,00</p>
+            <button class="btn-descricao">Ver Descrição</button>
+            <p class="produto-descricao">Filé mignon grelhado no ponto, coberto com molho bordô artesanal e acompanhado de batatas rústicas.</p>
+          </div>
+        </div>
+
+        <div class="card-produto">
+          <img src="./imgs/pratos/Salmao-Grelhado.webp" alt="Salmão Grelhado com Ervas" class="produto-img">
+          <div class="produto-info">
+            <h3 class="produto-nome">Salmão Grelhado com Ervas</h3>
+            <p class="produto-preco">R$ 78,00</p>
+            <button class="btn-descricao">Ver Descrição</button>
+            <p class="produto-descricao">Filé de salmão grelhado com crosta de ervas frescas, servido com legumes salteados e purê de batata.</p>
+          </div>
+        </div>
+
+        <div class="card-produto">
+          <img src="./imgs/pratos/macaarrao.jpg" alt="Pasta ao Pesto de Manjericão" class="produto-img">
+          <div class="produto-info">
+            <h3 class="produto-nome">Pasta ao Pesto de Manjericão</h3>
+            <p class="produto-preco">R$ 56,00</p>
+            <button class="btn-descricao">Ver Descrição</button>
+            <p class="produto-descricao">Massa fresca artesanal ao pesto de manjericão, tomatinhos confitados e lascas de parmesão.</p>
+          </div>
+        </div>
+
+        <div class="card-produto">
+          <img src="./imgs/pratos/parmeggiana.jpg" alt="Bife à Parmegiana" class="produto-img">
+          <div class="produto-info">
+            <h3 class="produto-nome">Bife à Parmegiana</h3>
+            <p class="produto-preco">R$ 72,00</p>
+            <button class="btn-descricao">Ver Descrição</button>
+            <p class="produto-descricao">Bife empanado coberto com molho de tomate caseiro, queijo gratinado e acompanhado de arroz e fritas.</p>
+          </div>
+        </div>
+
+        <div class="card-produto">
+          <img src="./imgs/pratos/salada.jpg" alt="Salada Caesar" class="produto-img">
+          <div class="produto-info">
+            <h3 class="produto-nome">Salada Caesar</h3>
+            <p class="produto-preco">R$ 45,00</p>
+            <button class="btn-descricao">Ver Descrição</button>
+            <p class="produto-descricao">Mix de folhas frescas, frango grelhado, croutons artesanais, parmesão e molho Caesar da casa.</p>
+          </div>
+        </div>
+
+        <div class="card-produto">
+          <img src="./imgs/pratos/ramgu.jpg" alt="Polenta Cremosa com Ragu" class="produto-img">
+          <div class="produto-info">
+            <h3 class="produto-nome">Polenta Cremosa com Ragu</h3>
+            <p class="produto-preco">R$ 64,00</p>
+            <button class="btn-descricao">Ver Descrição</button>
+            <p class="produto-descricao">Polenta cremosa com ragu de costela bovina cozida lentamente em vinho tinto e ervas.</p>
+          </div>
+        </div>
+
+        <div class="card-produto">
+          <img src="imgs/pratos/salada.jpg" alt="Tiramisu" class="produto-img">
+          <div class="produto-info">
+            <h3 class="produto-nome">Tiramisu</h3>
+            <p class="produto-preco">R$ 32,00</p>
+            <button class="btn-descricao">Ver Descrição</button>
+            <p class="produto-descricao">Clássica sobremesa italiana com camadas de biscoito champagne, café, creme de mascarpone e cacau.</p>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -53,7 +122,8 @@
     &copy; 2025 Para Lanches Todos os direitos reservados.
   </footer>
 
-  <script src="js/script.js"></script>
+  <script src="/public/js/main.js"></script>
+  <script src="/public/js/menu.js"></script>
 </body>
 
 </html>
