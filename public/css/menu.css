@@ -189,3 +189,237 @@ body {
     padding: 1rem;
   }
 }
+
+/* Estilos para container de ações */
+.produto-actions {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.btn-descricao,
+.btn-avaliar {
+  flex: 1;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-descricao {
+  background: rgba(191, 164, 106, 0.2);
+  color: var(--muted-gold);
+  border: 1px solid var(--muted-gold);
+}
+
+.btn-descricao:hover {
+  background: rgba(191, 164, 106, 0.35);
+  transform: translateY(-2px);
+}
+
+.btn-avaliar {
+  background: var(--muted-gold);
+  color: var(--bg);
+  font-weight: 700;
+}
+
+.btn-avaliar:hover {
+  background: #d4b97d;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(191, 164, 106, 0.3);
+}
+
+/* Modal de Avaliação */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal-content {
+  background: linear-gradient(135deg, rgba(15,23,32,0.95) 0%, rgba(20,30,45,0.95) 100%);
+  border: 2px solid var(--muted-gold);
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 450px;
+  width: 90%;
+  position: relative;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: var(--muted-gold);
+  font-size: 2rem;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.modal-close:hover {
+  transform: scale(1.2);
+}
+
+.modal-content h2 {
+  color: var(--muted-gold);
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-family: 'Playfair Display', serif;
+}
+
+.avaliar-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.prato-nome {
+  color: var(--muted-gray);
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.rating-stars {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.star {
+  font-size: 2.5rem;
+  color: #444;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.star:hover,
+.star.active {
+  color: #ffd700;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+  transform: scale(1.2);
+}
+
+.stars-label {
+  color: var(--muted-gray);
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+#descricao-avaliacao {
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--muted-gold);
+  border-radius: 6px;
+  color: var(--muted-gray);
+  font-family: 'Open Sans', sans-serif;
+  font-size: 0.95rem;
+  resize: vertical;
+  min-height: 80px;
+  max-height: 150px;
+}
+
+#descricao-avaliacao:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 15px rgba(191, 164, 106, 0.2);
+}
+
+#descricao-avaliacao::placeholder {
+  color: rgba(214, 222, 227, 0.5);
+}
+
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.btn-modal {
+  flex: 1;
+  padding: 0.9rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-cancelar {
+  background: rgba(109, 58, 63, 0.3);
+  color: var(--muted-gray);
+  border: 1px solid var(--accent);
+}
+
+.btn-cancelar:hover {
+  background: rgba(109, 58, 63, 0.5);
+}
+
+.btn-enviar {
+  background: var(--muted-gold);
+  color: var(--bg);
+  font-weight: 700;
+}
+
+.btn-enviar:not(:disabled):hover {
+  background: #d4b97d;
+  box-shadow: 0 4px 12px rgba(191, 164, 106, 0.3);
+  transform: translateY(-2px);
+}
+
+.btn-enviar:disabled {
+  background: #666;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+@media (max-width: 600px) {
+  .modal-content {
+    padding: 1.5rem;
+    border-radius: 10px;
+  }
+
+  .modal-content h2 {
+    font-size: 1.5rem;
+  }
+
+  .star {
+    font-size: 2rem;
+  }
+
+  .btn-modal {
+    padding: 0.8rem;
+  }
+}

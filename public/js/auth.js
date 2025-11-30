@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // ===== LOGIN =====
     const formLogin = document.getElementById('form-login');
     const mensagem = document.getElementById('mensagem');
     
@@ -8,14 +9,11 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const email = document.getElementById('email').value;
             const senha = document.getElementById('senha').value;
-            const lembrar = document.getElementById('lembrar')?.checked;
             
             try {
                 const response = await fetch('http://localhost:3000/api/login', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     credentials: 'include',
                     body: JSON.stringify({ email, senha })
                 });
@@ -23,21 +21,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 const data = await response.json();
 
                 if (response.ok) {
-                    // Sucesso no login
                     mensagem.style.color = '#4CAF50';
                     mensagem.textContent = data.message;
 
-                    // Redireciona após um breve delay
                     setTimeout(() => {
                         window.location.href = 'index.html';
                     }, 1500);
                 } else {
-                    // Erro no login
                     mensagem.style.color = '#ff4444';
                     mensagem.textContent = data.error || 'Erro ao fazer login';
                 }
             } catch (error) {
-                console.error('Erro ao fazer login:', error);
+                console.error('Erro:', error);
                 mensagem.style.color = '#ff4444';
                 mensagem.textContent = 'Erro ao conectar com o servidor';
             }
@@ -57,21 +52,73 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Verifica se já está logado e redireciona se estiver
+    // ===== CHECK AUTH E MOSTRAR ÍCONE DE LOGIN =====
     async function checkLoginStatus() {
         try {
             const response = await fetch('http://localhost:3000/api/check-auth', {
                 credentials: 'include'
             });
             
-            if (response.ok) {
-                window.location.href = 'index.html';
+            const data = await response.json();
+            
+            if (data.logado && data.user) {
+                updateUserMenu(data.user);
+                
+                // Se estiver na página de login e já logado, redirecionar
+                if (formLogin) {
+                    window.location.href = 'index.html';
+                }
+            } else {
+                hideUserMenu();
             }
         } catch (error) {
-            console.error('Erro ao verificar status de login:', error);
+            console.error('Erro ao verificar login:', error);
+            hideUserMenu();
         }
     }
 
-    // Verifica o status de login ao carregar a página
+    function updateUserMenu(user) {
+        const userMenu = document.querySelector('.user-menu');
+        const btnLogin = document.querySelector('.btn-login');
+        const userName = document.querySelector('.user-name');
+        const profileName = document.querySelector('.profile-name');
+        const profileEmail = document.querySelector('.profile-email');
+        
+        if (userMenu) userMenu.style.display = 'flex';
+        if (btnLogin) btnLogin.style.display = 'none';
+        if (userName) userName.textContent = user.nome;
+        if (profileName) profileName.textContent = user.nome;
+        if (profileEmail) profileEmail.textContent = user.email;
+
+        setupLogout();
+    }
+
+    function hideUserMenu() {
+        const userMenu = document.querySelector('.user-menu');
+        const btnLogin = document.querySelector('.btn-login');
+        
+        if (userMenu) userMenu.style.display = 'none';
+        if (btnLogin) btnLogin.style.display = 'inline-block';
+    }
+
+    function setupLogout() {
+        const btnLogout = document.querySelector('.btn-logout');
+        
+        if (btnLogout) {
+            btnLogout.addEventListener('click', async () => {
+                try {
+                    await fetch('http://localhost:3000/api/logout', {
+                        method: 'POST',
+                        credentials: 'include'
+                    });
+
+                    window.location.href = 'index.html';
+                } catch (error) {
+                    console.error('Erro ao fazer logout:', error);
+                }
+            });
+        }
+    }
+
     checkLoginStatus();
 });

@@ -21,7 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const botoesDescricao = document.querySelectorAll('.btn-descricao');
     botoesDescricao.forEach(botao => {
         botao.addEventListener('click', () => {
-            const descricao = botao.nextElementSibling;
+            // Encontra a descrição dentro do mesmo .produto-info
+            const produtoInfo = botao.closest('.produto-info');
+            const descricao = produtoInfo.querySelector('.produto-descricao');
             const estaVisivel = descricao.classList.contains('visible');
             
             // Fecha todas as descrições abertas

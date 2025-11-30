@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva de Mesa - Para Lanches</title>
+    <link rel="stylesheet" href="/public/css/main.css">
+    <link rel="stylesheet" href="/public/css/effects.css">
+    <link rel="stylesheet" href="/public/css/features.css">
+    <link rel="stylesheet" href="/public/css/components.css">
+    <link rel="stylesheet" href="/public/css/auth.css">
+    <link rel="icon" type="image/png" href="imgs/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="/public/css/user-profile.css">
+    <style>
+        .reserva-page {
+            min-height: 100vh;
+            background: linear-gradient(rgba(15,23,32,0.85), rgba(15,23,32,0.85)),
+                        url('https://images.unsplash.com/photo-1542621334-a44073e52ec0?auto=format&fit=crop&w=1440&q=80') center/cover no-repeat;
+            padding: 100px 20px 40px;
+        }
+
+        .reserva-container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 50px 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(191, 164, 106, 0.2);
+        }
+
+        .reserva-container h1 {
+            font-family: 'Playfair Display', serif;
+            color: var(--muted-gold);
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+        }
+
+        .reserva-container .subtitulo {
+            text-align: center;
+            color: var(--muted-gray);
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--muted-gray);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid rgba(191, 164, 106, 0.3);
+            border-radius: 6px;
+            font-size: 1rem;
+            font-family: 'Open Sans', sans-serif;
+            transition: all 0.3s;
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--muted-gray);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(214, 222, 227, 0.5);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--muted-gold);
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 10px rgba(191, 164, 106, 0.2);
+        }
+
+        .form-group select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23bfa46a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 20px;
+            padding-right: 40px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-row .form-group {
+            margin-bottom: 0;
+        }
+
+        .btn-reservar {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--muted-gold) 0%, #a08a58 100%);
+            color: var(--bg);
+            border: none;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-reservar:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(191, 164, 106, 0.5);
+        }
+
+        .btn-reservar:active {
+            transform: translateY(-1px);
+        }
+
+        .btn-reservar i {
+            margin-right: 8px;
+        }
+
+        .mensagem-reserva {
+            padding: 15px 20px;
+            border-radius: 6px;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 600;
+            display: none;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .mensagem-reserva.sucesso {
+            background: rgba(76, 175, 80, 0.2);
+            color: #4caf50;
+            border: 2px solid rgba(76, 175, 80, 0.5);
+            display: block;
+        }
+
+        .mensagem-reserva.erro {
+            background: rgba(244, 67, 54, 0.2);
+            color: #f44336;
+            border: 2px solid rgba(244, 67, 54, 0.5);
+            display: block;
+        }
+
+        .link-voltar {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .link-voltar a {
+            color: var(--muted-gold);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .link-voltar a:hover {
+            color: #d4b896;
+            transform: translateX(-5px);
+        }
+
+        .link-voltar i {
+            margin-right: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .reserva-page {
+                padding: 80px 15px 30px;
+            }
+
+            .reserva-container {
+                padding: 30px 25px;
+            }
+
+            .reserva-container h1 {
+                font-size: 2rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body class="reserva-page">
+    <!-- Header -->
+    <header role="banner">
+        <div class="logo" role="heading" aria-level="1">Para Lanches</div>
+        <nav class="navbar" role="navigation" aria-label="Menu principal">
+            <a href="index.html" aria-label="Ir para home">Home</a>
+            <a href="index.html#sobre" aria-label="Sobre nossa história">Sobre Nós</a>
+            <a href="index.html#menu" aria-label="Ver menu de pratos">Menu</a>
+            <a href="cardapio.html" aria-label="Ver cardápio completo">Cardápio</a>
+            <a href="index.html#contato" aria-label="Informações de contato">Contato</a>
+            <div class="user-menu" style="display: none;">
+                <button class="user-avatar" aria-label="Menu do usuário">
+                    <i class="fas fa-user-circle"></i>
+                </button>
+                <div class="user-dropdown">
+                    <div class="user-info">
+                        <i class="fas fa-user"></i>
+                        <span class="user-name">Nome do Usuário</span>
+                    </div>
+                    <a href="minhas-reservas.html" class="dropdown-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        Minhas Reservas
+                    </a>
+                    <a href="#pedidos" class="dropdown-item">
+                        <i class="fas fa-utensils"></i>
+                        Meus Pedidos
+                    </a>
+                    <a href="#perfil" class="dropdown-item">
+                        <i class="fas fa-user-cog"></i>
+                        Configurações
+                    </a>
+                    <button class="dropdown-item btn-logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Sair
+                    </button>
+                </div>
+            </div>
+            <a href="login.html" class="btn-login" aria-label="Fazer login">Login</a>
+        </nav>
+        <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+            &#9776;
+        </button>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <div class="reserva-container">
+        <h1>Reserve sua Mesa</h1>
+        <p class="subtitulo">Escolha o melhor horário para visitá-nos</p>
+
+        <div id="mensagem-reserva" class="mensagem-reserva"></div>
+
+        <form id="form-reserva">
+            <div class="form-group">
+                <label for="nome">Nome Completo *</label>
+                <input type="text" id="nome" required placeholder="Digite seu nome">
+            </div>
+
+            <div class="form-group">
+                <label for="email">E-mail *</label>
+                <input type="email" id="email" required placeholder="seu@email.com">
+            </div>
+
+            <div class="form-group">
+                <label for="telefone">Telefone *</label>
+                <input type="tel" id="telefone" required placeholder="(11) 9XXXX-XXXX">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="data">Data da Reserva *</label>
+                    <input type="date" id="data" required>
+                </div>
+                <div class="form-group">
+                    <label for="horario">Horário *</label>
+                    <input type="time" id="horario" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="pessoas">Número de Pessoas *</label>
+                    <select id="pessoas" required>
+                        <option value="">Selecione</option>
+                        <option value="1">1 Pessoa</option>
+                        <option value="2">2 Pessoas</option>
+                        <option value="3">3 Pessoas</option>
+                        <option value="4">4 Pessoas</option>
+                        <option value="5">5 Pessoas</option>
+                        <option value="6">6 Pessoas</option>
+                        <option value="7">7 Pessoas</option>
+                        <option value="8">8 Pessoas</option>
+                        <option value="9">9 Pessoas</option>
+                        <option value="10">10+ Pessoas</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="preferencia">Preferência de Mesa</label>
+                    <select id="preferencia">
+                        <option value="">Nenhuma preferência</option>
+                        <option value="janela">Perto da Janela</option>
+                        <option value="canto">Canto</option>
+                        <option value="centro">Centro</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="observacoes">Observações Especiais</label>
+                <textarea id="observacoes" rows="4" placeholder="Alguma observação ou pedido especial? (ex: alergia, ocasião especial)"></textarea>
+            </div>
+
+            <button type="submit" class="btn-reservar">
+                <i class="fas fa-calendar-check"></i> Confirmar Reserva
+            </button>
+        </form>
+
+        <div class="link-voltar">
+            <a href="index.html">← Voltar para home</a>
+        </div>
+    </div>
+
+    <script src="/public/js/main.js"></script>
+    <script src="/public/js/auth.js"></script>
+    <script src="/public/js/reservation.js"></script>
+</body>
+</html>

@@ -1,4 +1,176 @@
-/* Estilo para seção de reservas */
+/* ========== ESPECIAIS DA SEMANA ========== */
+.especiais-semana {
+    padding: 5rem 2rem;
+    background: linear-gradient(135deg, rgba(15,23,32,0.9) 0%, rgba(20,30,45,0.9) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.especiais-semana::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -10%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(191, 164, 106, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.especiais-semana h2 {
+    text-align: center;
+    color: var(--muted-gold);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-family: 'Playfair Display', serif;
+    position: relative;
+    z-index: 1;
+}
+
+.especiais-semana .subtitle {
+    text-align: center;
+    color: var(--muted-gray);
+    font-size: 1.1rem;
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 1;
+}
+
+.especiais-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.especial-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(191, 164, 106, 0.3);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.especial-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--muted-gold);
+    box-shadow: 0 10px 40px rgba(191, 164, 106, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.especial-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: rgba(191, 164, 106, 0.9);
+    color: var(--bg);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    z-index: 2;
+    backdrop-filter: blur(10px);
+}
+
+.especial-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.especial-card:hover .especial-img {
+    transform: scale(1.05);
+}
+
+.especial-info {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.especial-info h3 {
+    color: var(--muted-gold);
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    font-family: 'Playfair Display', serif;
+}
+
+.especial-desc {
+    color: var(--muted-gray);
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+    line-height: 1.5;
+}
+
+.especial-preco {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.preco-original {
+    color: rgba(214, 222, 227, 0.6);
+    text-decoration: line-through;
+    font-size: 1rem;
+}
+
+.preco-desconto {
+    color: var(--muted-gold);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.btn-especial {
+    padding: 0.8rem 1.5rem;
+    background: linear-gradient(135deg, var(--muted-gold) 0%, #d4b97d 100%);
+    color: var(--bg);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn-especial:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(191, 164, 106, 0.4);
+}
+
+@media (max-width: 768px) {
+    .especiais-semana {
+        padding: 3rem 1.5rem;
+    }
+
+    .especiais-semana h2 {
+        font-size: 2rem;
+    }
+
+    .especiais-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .especial-img {
+        height: 200px;
+    }
+}
+
+/* ========== RESERVAS ========== */
 .reservas {
     padding: 4rem 2rem;
     background: rgba(15,23,32,0.95);
@@ -31,46 +203,12 @@
 /* Estilo para avaliações */
 .prato {
     padding: 1.5rem;
-    background: rgba(255,255,255,0.05);
+    background-color: rgba(255,255,255,0.05);
     border-radius: 8px;
     margin-bottom: 1rem;
-}
-
-.prato h3 {
-    color: var(--muted-gold);
-    margin-bottom: 0.5rem;
-}
-
-.preco {
-    color: var(--muted-gray);
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
-}
-
-.avaliacao {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.estrelas {
-    color: #ffd700;
-    font-size: 1.2rem;
-    cursor: pointer;
-}
-
-.btn-avaliar {
-    padding: 8px 16px;
-    background: var(--muted-gold);
-    border: none;
-    border-radius: 4px;
-    color: var(--bg);
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.btn-avaliar:hover {
-    background: #d4b97d;
+    max-width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
 }
 
 /* Modal de avaliação */

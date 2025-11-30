@@ -32,8 +32,9 @@
     <nav class="navbar" role="navigation" aria-label="Menu principal">
       <a href="#home" aria-current="page">Home</a>
       <a href="#sobre" aria-label="Sobre nossa história">Sobre Nós</a>
-      <a href="#menu" aria-label="Ver menu de pratos">Menu</a>
+      <a href="#especiais" aria-label="Ver especiais da semana">Especiais</a>
       <a href="./cardapio.html" aria-label="Ver cardápio completo">Cardápio</a>
+      <a href="./reserva.html" aria-label="Reservar uma mesa">Reservar</a>
       <a href="#contato" aria-label="Informações de contato">Contato</a>
       <div class="user-menu" style="display: none;">
         <button class="user-avatar" aria-label="Menu do usuário">
@@ -44,7 +45,7 @@
             <i class="fas fa-user"></i>
             <span class="user-name">Nome do Usuário</span>
           </div>
-          <a href="#reservas" class="dropdown-item">
+          <a href="minhas-reservas.html" class="dropdown-item">
             <i class="fas fa-calendar-alt"></i>
             Minhas Reservas
           </a>
@@ -83,7 +84,7 @@
       <p class="profile-email">usuario@email.com</p>
     </div>
     <nav class="sidebar-nav">
-      <a href="#reservas" class="sidebar-item">
+      <a href="minhas-reservas.html" class="sidebar-item">
         <i class="fas fa-calendar-alt"></i>
         Minhas Reservas
       </a>
@@ -187,30 +188,66 @@
       </div>
     </div>
   </section>
-          <div class="estrelas" data-nota="0">
-            ★★★★★
+
+  <!-- ========== ESPECIAIS DA SEMANA ========== -->
+  <section id="especiais" class="especiais-semana" aria-labelledby="especiais-title">
+    <h2 id="especiais-title">Especiais da Semana</h2>
+    <p class="subtitle">Pratos exclusivos que nosso chef preparou especialmente para você</p>
+
+    <div class="especiais-grid">
+      <div class="especial-card">
+        <div class="especial-badge">🌟 Segunda</div>
+        <img src="imgs/pratos/risoto.jpg" alt="Risoto Trufado" class="especial-img">
+        <div class="especial-info">
+          <h3>Risoto Trufado com Cogumelos</h3>
+          <p class="especial-desc">Arroz arbóreo cremoso com azeite trufado, cogumelos porcini e parmesão. Um toque sofisticado para começar a semana.</p>
+          <div class="especial-preco">
+            <span class="preco-original">R$ 85,00</span>
+            <span class="preco-desconto">R$ 68,00</span>
           </div>
-          <button class="btn-avaliar">Avaliar</button>
+          <button class="btn-especial" onclick="document.location='cardapio.html'">Ver no Cardápio</button>
         </div>
       </div>
-      <div class="prato" data-id="3">
-        <h3>Salmão Grelhado com Ervas</h3>
-        <p class="preco">R$ 78,00</p>
-        <div class="avaliacao">
-          <div class="estrelas" data-nota="0">
-            ★★★★★
+
+      <div class="especial-card">
+        <div class="especial-badge">🔥 Quarta</div>
+        <img src="imgs/pratos/file.jpg" alt="Filé com Redução" class="especial-img">
+        <div class="especial-info">
+          <h3>Filé Mignon com Redução de Vinho</h3>
+          <p class="especial-desc">Corte nobre grelhado na manteiga clarificada, com redução de vinho tinto e acompanhamento de batata Anna.</p>
+          <div class="especial-preco">
+            <span class="preco-original">R$ 95,00</span>
+            <span class="preco-desconto">R$ 79,00</span>
           </div>
-          <button class="btn-avaliar">Avaliar</button>
+          <button class="btn-especial" onclick="document.location='cardapio.html'">Ver no Cardápio</button>
         </div>
       </div>
-      <div class="prato" data-id="4">
-        <h3>Pasta ao Pesto de Manjericão</h3>
-        <p class="preco">R$ 56,00</p>
-        <div class="avaliacao">
-          <div class="estrelas" data-nota="0">
-            ★★★★★
+
+      <div class="especial-card">
+        <div class="especial-badge">🐟 Sexta</div>
+        <img src="imgs/pratos/Salmao-Grelhado.webp" alt="Salmão Premium" class="especial-img">
+        <div class="especial-info">
+          <h3>Salmão Premium com Molho de Limão Siciliano</h3>
+          <p class="especial-desc">Filé de salmão selvagem grelhado em perfeição, com molho de limão siciliano e caviar de melancia.</p>
+          <div class="especial-preco">
+            <span class="preco-original">R$ 105,00</span>
+            <span class="preco-desconto">R$ 89,00</span>
           </div>
-          <button class="btn-avaliar">Avaliar</button>
+          <button class="btn-especial" onclick="document.location='cardapio.html'">Ver no Cardápio</button>
+        </div>
+      </div>
+
+      <div class="especial-card">
+        <div class="especial-badge">🎉 Fim de Semana</div>
+        <img src="imgs/pratos/macaarrao.jpg" alt="Massa Premium" class="especial-img">
+        <div class="especial-info">
+          <h3>Massa Fresca com Frutos do Mar</h3>
+          <p class="especial-desc">Tagliatelle fresca com camarão, lula, mexilhão e vieiras em molho de vinho branco e alho.</p>
+          <div class="especial-preco">
+            <span class="preco-original">R$ 98,00</span>
+            <span class="preco-desconto">R$ 82,00</span>
+          </div>
+          <button class="btn-especial" onclick="document.location='cardapio.html'">Ver no Cardápio</button>
         </div>
       </div>
     </div>
@@ -319,6 +356,7 @@
   <script src="/public/js/effects.js"></script>
   <script src="/public/js/user-profile.js"></script>
   <script src="/public/js/carousel.js"></script>
+  <script src="/public/js/auth.js"></script>
 </body>
 
 </html>
