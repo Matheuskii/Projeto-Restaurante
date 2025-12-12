@@ -3,56 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Criar Conta - Para Lanches</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Criar Conta</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
+    <header>
+        <div class="navbar">
+            <div class="logo">PARA LANCHES</div>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="cardapio.html" class="nav-link">Cardápio</a>
+                <a href="login.html" class="btn-login-nav">Login</a>
+            </nav>
+        </div>
+    </header>
+
     <div class="auth-wrapper">
         <div class="glass-card">
-            <div style="text-align: center; margin-bottom: 20px;">
-                <h1 class="logo">Junte-se a Nós</h1>
-                <p style="color: #94a3b8;">Crie sua conta para reservar e pedir</p>
-            </div>
+            <h2 class="section-title" style="margin-bottom: 20px;">Crie sua Conta</h2>
 
             <form id="form-cadastro">
-                <div id="mensagem" class="message"></div>
-
                 <div class="form-group">
-                    <label><i class="fas fa-user"></i> Nome Completo</label>
-                    <input type="text" id="nome" required placeholder="Seu nome">
+                    <label>Nome Completo</label>
+                    <input type="text" name="nome" required placeholder="Seu nome">
                 </div>
 
                 <div class="form-group">
-                    <label><i class="fas fa-envelope"></i> E-mail</label>
-                    <input type="email" id="email" required placeholder="seu@email.com">
+                    <label>E-mail</label>
+                    <input type="email" name="email" required placeholder="seu@email.com">
                 </div>
 
-                <div class="form-group">
-                    <label><i class="fas fa-lock"></i> Senha</label>
-                    <input type="password" id="senha" required placeholder="Crie uma senha">
+                <div class="form-row">
+                    <div>
+                        <label>Senha</label>
+                        <input type="password" name="senha" required>
+                    </div>
+                    <div>
+                        <label>Confirmar Senha</label>
+                        <input type="password" name="confsenha" required>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label><i class="fas fa-lock"></i> Confirmar Senha</label>
-                    <input type="password" id="confirmar-senha" required placeholder="Repita a senha">
-                </div>
-
-                <button type="submit" class="btn-primary">Criar Conta</button>
+                <button type="submit" class="btn-primary" style="width:100%; margin-top:10px;">Cadastrar</button>
             </form>
 
-            <div class="auth-footer">
-                <p>Já tem uma conta? <a href="login.html">Fazer Login</a></p>
-                <p><a href="index.html">Voltar para Home</a></p>
+            <div style="text-align:center; margin-top:20px;">
+                <span style="color:#aaa">Já tem conta? </span>
+                <a href="login.html" style="color:var(--gold); font-weight:bold;">Faça Login</a>
             </div>
         </div>
     </div>
-  <script src="js/toast.js"></script>
 
-    <script src="js/user-profile.js"></script>
-    <script src="js/script.js"></script>
-    <script src="js/rating.js"></script>
-</body>
-</html>
+    <script src="js/global.js"></script>
+    <script src="js/pages.js"></script>
 </body>
 </html>

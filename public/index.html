@@ -3,195 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Lanches - Alta Gastronomia</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Para Lanches - Home</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    
+
     <header>
-        <div class="navbar-container">
-            <div class="logo">Para Lanches</div>
-            <nav class="nav-links">
-                <a href="index.html" style="color:var(--gold)">Home</a>
-                <a href="cardapio.html">Cardápio</a>
-                <a href="reserva.html">Reservar</a>
-                <a href="minhas-reservas.html">Minhas Reservas</a>
-                
-                <div class="user-menu" id="user-menu-area">
+        <div class="navbar">
+            <div class="logo">PARA LANCHES</div>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="cardapio.html" class="nav-link">Cardápio</a>
+                <a href="reserva.html" class="nav-link">Reservas</a>
+
+                <a href="login.html" id="nav-login-btn" class="btn-login-nav">Login</a>
+
+                <div class="user-area" id="nav-user-area" style="display:none">
                     <div class="user-avatar"><i class="fas fa-user"></i></div>
-                    <div class="user-dropdown">
-                        <span class="dropdown-item" id="user-name-display" style="font-weight:bold; color:var(--gold);">Usuário</span>
-                        <a href="minhas-reservas.html" class="dropdown-item"><i class="fas fa-calendar-alt"></i> Reservas</a>
-                        <div class="dropdown-item btn-logout" style="cursor:pointer; color:#ef4444;"><i class="fas fa-sign-out-alt"></i> Sair</div>
+                    <div class="dropdown">
+                        <div style="padding:10px 15px; color:var(--gold)">Olá, <span id="user-name-display">User</span></div>
+                        <a href="minhas-reservas.html">Minhas Reservas</a>
+                        <a href="carrinho.html">Carrinho</a>
+                        <a href="#" class="btn-logout" style="color:#ff4d4d">Sair</a>
                     </div>
                 </div>
-
-                <a href="login.html" class="btn-login-nav" id="login-btn-area">Login</a>
             </nav>
         </div>
     </header>
 
-  <section class="hero">
+    <section class="hero">
         <div class="hero-content">
             <h1>Sabor que Inspira</h1>
-            <p>Descubra uma experiência gastronômica onde cada detalhe é preparado para despertar seus sentidos.</p>
-            <a href="#pratos-semana" class="btn-primary">Ver Especiais</a>
+            <p>Alta gastronomia em um ambiente inesquecível.</p>
+            <a href="cardapio.html" class="btn-primary">Ver Cardápio</a>
         </div>
     </section>
 
-    <section id="pratos-semana" class="container">
+    <div class="container">
         <h2 class="section-title">Especiais da Semana</h2>
-        <div class="carousel-container">
-            <div class="carousel-slide" id="carousel-slide">
+        <div class="carousel-wrap">
+            <div class="carousel-track">
                 <div class="carousel-item">
-                    <img src="https://images.unsplash.com/photo-1546241072-48010ad2862c?auto=format&fit=crop&w=800&q=80" alt="Prato 1">
-                    <div class="carousel-caption">
+                    <img src="https://images.unsplash.com/photo-1546241072-48010ad2862c?auto=format&fit=crop&w=1200&q=80">
+                    <div class="carousel-content">
                         <h3>Bife Ancho Premium</h3>
-                        <p>O corte mais suculento com nosso molho secreto.</p>
+                        <p>Suculência incomparável na brasa.</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=800&q=80" alt="Prato 2">
-                    <div class="carousel-caption">
-                        <h3>Semana Italiana</h3>
-                        <p>Massas frescas feitas à mão todos os dias.</p>
+                    <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=1200&q=80">
+                    <div class="carousel-content">
+                        <h3>Fettuccine Trufado</h3>
+                        <p>Massa fresca feita à mão.</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?auto=format&fit=crop&w=800&q=80" alt="Prato 3">
-                    <div class="carousel-caption">
+                    <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?auto=format&fit=crop&w=1200&q=80">
+                    <div class="carousel-content">
                         <h3>Frutos do Mar</h3>
-                        <p>A frescura do oceano direto para sua mesa.</p>
+                        <p>O frescor do oceano na sua mesa.</p>
                     </div>
                 </div>
             </div>
-            <button class="carousel-btn prev-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
-            <button class="carousel-btn next-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+            <button class="arrow prev"><i class="fas fa-chevron-left"></i></button>
+            <button class="arrow next"><i class="fas fa-chevron-right"></i></button>
         </div>
-    </section>
+    </div>
 
-    <script>
-        const slide = document.getElementById('carousel-slide');
-        const images = document.querySelectorAll('.carousel-item');
-        let counter = 0;
-        const size = images[0].clientWidth;
-
-        document.getElementById('nextBtn').addEventListener('click', () => {
-            if (counter >= images.length - 1) counter = -1;
-            counter++;
-            slide.style.transform = 'translateX(' + (-size * counter) + 'px)';
-        });
-
-        document.getElementById('prevBtn').addEventListener('click', () => {
-            if (counter <= 0) counter = images.length;
-            counter--;
-            slide.style.transform = 'translateX(' + (-size * counter) + 'px)';
-        });
-        
-        // Auto play
-        setInterval(() => {
-            if (counter >= images.length - 1) counter = -1;
-            counter++;
-            slide.style.transform = 'translateX(' + (-size * counter) + 'px)';
-        }, 5000);
-    </script>
-    <section class="container">
+    <section class="container features-section">
         <h2 class="section-title">Nossa Essência</h2>
-        <p class="section-subtitle">O que torna a Para Lanches única em São Paulo</p>
-        
         <div class="features-grid">
-            <div class="feature-item">
-                <i class="fas fa-leaf feature-icon"></i>
+            <div class="feature-card">
+                <div class="icon-box"><i class="fas fa-leaf"></i></div>
                 <h3>Ingredientes Frescos</h3>
-                <p>Selecionamos produtores locais para garantir o sabor mais puro em cada prato.</p>
+                <p>Selecionamos produtores locais diariamente para garantir o sabor mais puro e autêntico em cada prato servido.</p>
             </div>
-            <div class="feature-item">
-                <i class="fas fa-wine-glass-alt feature-icon"></i>
+            <div class="feature-card">
+                <div class="icon-box"><i class="fas fa-wine-glass-alt"></i></div>
                 <h3>Carta de Vinhos</h3>
-                <p>Uma seleção exclusiva para harmonizar perfeitamente com sua escolha.</p>
+                <p>Uma adega climatizada com rótulos exclusivos do mundo todo, selecionados para harmonizar com nosso menu.</p>
             </div>
-            <div class="feature-item">
-                <i class="fas fa-star feature-icon"></i>
+            <div class="feature-card">
+                <div class="icon-box"><i class="fas fa-star"></i></div>
                 <h3>Chefs Premiados</h3>
-                <p>Técnica e paixão se encontram na nossa cozinha de alto padrão.</p>
+                <p>Técnica francesa, alma brasileira. Nossa cozinha é comandada por mestres apaixonados pela arte de servir.</p>
             </div>
         </div>
     </section>
 
-    <section class="container">
-        <h2 class="section-title">Favoritos do Chef</h2>
-        <div class="menu-grid">
-            <div class="card-produto">
-                <div class="card-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1546241072-48010ad2862c?auto=format&fit=crop&w=500&q=60" alt="Bife Ancho">
-                </div>
-                <div class="card-body">
-                    <div class="card-header">
-                        <h3 class="card-title">Bife Ancho Premium</h3>
-                        <span class="card-price">R$ 89,90</span>
+    <section class="lore-section">
+        <div class="container lore-grid">
+            <div>
+                <h2 style="text-align: left; margin-bottom: 20px; font-size: 2.5rem; color: var(--gold);">A Alquimia do Sabor</h2>
+                <p style="color: #ccc; margin-bottom: 20px; line-height: 1.8;">
+                    Fundado em 2015, o <strong>Para Lanches</strong> nasceu de uma ideia ousada: provar que a rapidez de um lanche pode coexistir com a complexidade da alta gastronomia.
+                </p>
+                <div style="display: flex; gap: 40px; margin-top: 30px;">
+                    <div>
+                        <span style="display: block; font-size: 2.5rem; color: var(--gold); font-weight: 800;">10+</span>
+                        <span style="color: #888;">ANOS DE HISTÓRIA</span>
                     </div>
-                    <p class="card-desc">Corte nobre grelhado na perfeição, acompanhado de risoto de parmesão.</p>
-                    <a href="cardapio.html" class="btn-add">Ver Cardápio Completo</a>
+                    <div>
+                        <span style="display: block; font-size: 2.5rem; color: var(--gold); font-weight: 800;">5k+</span>
+                        <span style="color: #888;">CLIENTES FELIZES</span>
+                    </div>
                 </div>
             </div>
-            <div class="card-produto">
-                <div class="card-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1467003909585-2f8a7270028d?auto=format&fit=crop&w=500&q=60" alt="Salmão">
-                </div>
-                <div class="card-body">
-                    <div class="card-header">
-                        <h3 class="card-title">Salmão Grelhado</h3>
-                        <span class="card-price">R$ 75,50</span>
-                    </div>
-                    <p class="card-desc">Filé fresco com molho de maracujá e legumes sautée crocantes.</p>
-                    <a href="cardapio.html" class="btn-add">Ver Cardápio Completo</a>
-                </div>
-            </div>
-            <div class="card-produto">
-                <div class="card-img-wrapper">
-                    <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=500&q=60" alt="Massa">
-                </div>
-                <div class="card-body">
-                    <div class="card-header">
-                        <h3 class="card-title">Fettuccine Trufado</h3>
-                        <span class="card-price">R$ 68,00</span>
-                    </div>
-                    <p class="card-desc">Massa fresca artesanal com creme de cogumelos e azeite de trufas brancas.</p>
-                    <a href="cardapio.html" class="btn-add">Ver Cardápio Completo</a>
-                </div>
+            <div>
+                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80"
+                     class="lore-img" alt="Interior">
             </div>
         </div>
     </section>
 
     <footer>
-        <div class="footer-content">
-            <div class="footer-col">
-                <h3 class="logo">Para Lanches</h3>
-                <p>Transformando refeições em memórias inesquecíveis desde 2025.</p>
+        <div class="footer-grid">
+            <div class="footer-info">
+                <div class="logo">PARA LANCHES</div>
+                <p>Transformando simples refeições em memórias inesquecíveis. Nossa missão é servir excelência em cada detalhe, do prato à decoração.</p>
             </div>
-            <div class="footer-col">
-                <h3>Links Rápidos</h3>
-                <a href="index.html">Home</a>
-                <a href="cardapio.html">Cardápio</a>
-                <a href="reserva.html">Reservas</a>
+            <div class="footer-links">
+                <h4>Navegação</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="cardapio.html">Cardápio</a></li>
+                    <li><a href="reserva.html">Reservas</a></li>
+                    <li><a href="login.html">Login</a></li>
+                </ul>
             </div>
-            <div class="footer-col">
-                <h3>Contato</h3>
+            <div class="footer-contact">
+                <h4>Contato</h4>
                 <p><i class="fas fa-map-marker-alt"></i> Rua Augusta, 1500 - SP</p>
                 <p><i class="fas fa-phone"></i> (11) 99999-9999</p>
                 <p><i class="fas fa-envelope"></i> contato@paralanches.com</p>
+                <div style="margin-top: 20px; font-size: 1.5rem;">
+                    <i class="fab fa-instagram" style="margin-right: 15px; color: #fff; cursor: pointer;"></i>
+                    <i class="fab fa-facebook" style="margin-right: 15px; color: #fff; cursor: pointer;"></i>
+                    <i class="fab fa-whatsapp" style="color: #fff; cursor: pointer;"></i>
+                </div>
             </div>
         </div>
-        <div style="text-align:center; margin-top:40px; color:#555; font-size:0.8rem;">
+        <div class="footer-bottom">
             &copy; 2025 Para Lanches. Todos os direitos reservados.
         </div>
     </footer>
 
-  <script src="js/toast.js"></script>
-
-    <script src="js/main.js"></script>
-    <script src="js/user-profile.js"></script>
-    <script src="js/script.js"></script>
+    <script src="js/global.js"></script>
+    <script src="js/pages.js"></script>
 </body>
 </html>

@@ -1,0 +1,108 @@
+:root {
+    --bg-dark: #0b0e11;
+    --gold: #d4af37;
+    --gold-hover: #f1c40f;
+    --text-white: #f0f0f0;
+    --text-gray: #a0a0a0;
+    --card-bg: #161b22;
+    --font-title: 'Playfair Display', serif;
+    --font-body: 'Open Sans', sans-serif;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background-color: var(--bg-dark); color: var(--text-white); font-family: var(--font-body); min-height: 100vh; display: flex; flex-direction: column; }
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+ul { list-style: none; }
+
+/* HEADER FIXO */
+header {
+    position: fixed; top: 0; width: 100%; z-index: 1000;
+    background: rgba(11, 14, 17, 0.95);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    padding: 15px 0;
+}
+.navbar {
+    max-width: 1200px; margin: 0 auto; padding: 0 20px;
+    display: flex; justify-content: space-between; align-items: center;
+}
+.logo { font-size: 1.8rem; font-weight: 700; color: var(--gold); letter-spacing: 1px; font-family: var(--font-title); }
+.nav-menu { display: flex; gap: 25px; align-items: center; }
+.nav-link { color: var(--text-gray); font-weight: 600; font-size: 0.95rem; }
+.nav-link:hover { color: var(--gold); }
+
+/* User Controls */
+.btn-login-nav { border: 1px solid var(--gold); padding: 8px 25px; border-radius: 50px; color: var(--gold); font-weight: bold; }
+.btn-login-nav:hover { background: var(--gold); color: var(--bg-dark); }
+
+.user-area { position: relative; cursor: pointer; }
+.user-avatar { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--gold); color: var(--gold); display: flex; align-items: center; justify-content: center; }
+.dropdown { display: none; position: absolute; top: 120%; right: 0; background: var(--card-bg); border: 1px solid #333; min-width: 180px; border-radius: 8px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+.user-area:hover .dropdown { display: block; }
+.dropdown a { display: block; padding: 12px 15px; color: var(--text-gray); border-bottom: 1px solid rgba(255,255,255,0.05); }
+.dropdown a:hover { background: #222; color: #fff; }
+
+/* GERAL */
+.container { max-width: 1200px; margin: 100px auto 60px; padding: 0 20px; flex: 1; }
+.section-title { text-align: center; font-size: 2.5rem; margin-bottom: 40px; color: var(--gold); font-family: var(--font-title); }
+.btn-primary { background: linear-gradient(135deg, var(--gold), #b8860b); color: #000; border: none; padding: 12px 30px; border-radius: 8px; font-weight: 800; text-transform: uppercase; cursor: pointer; }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4); }
+
+/* TOAST */
+#toast-box { position: fixed; top: 90px; right: 20px; z-index: 9999; display: flex; flex-direction: column; gap: 10px; }
+.toast { background: var(--card-bg); padding: 15px 20px; border-left: 4px solid var(--gold); color: #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.5); animation: slideIn 0.3s ease; }
+@keyframes slideIn { from { transform: translateX(100%); } to { transform: translateX(0); } }
+
+/* Menu do Usuário (Dropdown) */
+.user-area {
+    position: relative;
+    cursor: pointer;
+    padding-bottom: 10px; /* Aumenta a área clicável para baixo */
+}
+
+.user-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    border: 1px solid var(--gold); color: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    transition: 0.3s;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 100%; /* Cola logo abaixo do pai */
+    right: 0;
+    background: var(--card-bg);
+    border: 1px solid rgba(255,255,255,0.1);
+    min-width: 200px;
+    border-radius: 8px;
+    overflow: visible; /* Importante para a ponte funcionar */
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+    z-index: 1001;
+    margin-top: 5px; /* Pequeno espaço visual */
+}
+
+/* A PONTE MÁGICA: Isso cria uma área invisível que impede o menu de fechar */
+.dropdown::before {
+    content: '';
+    position: absolute;
+    top: -20px; /* Cobre o espaço acima do menu */
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background: transparent;
+}
+
+.user-area:hover .dropdown { display: block; }
+
+.dropdown a, .dropdown div {
+    display: block;
+    padding: 15px 20px; /* Área de clique maior */
+    color: var(--text-gray);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: 0.2s;
+}
+
+.dropdown a:hover, .dropdown div:hover {
+    background: rgba(212, 175, 55, 0.1); /* Dourado suave no hover */
+    color: #fff;
+    padding-left: 25px; /* Efeito de movimento */
+}

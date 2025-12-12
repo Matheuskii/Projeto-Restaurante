@@ -1,0 +1,126 @@
+.menu-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
+.card-produto { background: var(--card-bg); border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column; transition: 0.3s; }
+.card-produto:hover { transform: translateY(-10px); border-color: var(--gold); }
+.card-img-wrapper { height: 200px; overflow: hidden; }
+.card-img-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+.card-produto:hover img { transform: scale(1.1); }
+.card-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+.card-header { display: flex; justify-content: space-between; margin-bottom: 10px; }
+.card-title { font-size: 1.2rem; color: #fff; font-weight: 700; }
+.card-price { color: var(--gold); font-weight: 800; }
+.card-desc { color: var(--text-gray); font-size: 0.9rem; margin-bottom: 20px; flex: 1; }
+.card-actions { display: flex; gap: 10px; }
+.btn-avaliar { padding: 10px; background: transparent; border: 1px solid var(--gold); color: var(--gold); border-radius: 6px; flex: 1; cursor: pointer; }
+.btn-pedir { padding: 10px; background: var(--gold); border: none; color: #000; font-weight: bold; border-radius: 6px; flex: 2; cursor: pointer; }
+
+/* CONTAINER DA GRADE */
+.menu-grid {
+    display: grid;
+    /* Isso cria colunas automáticas. Se a tela for pequena, 1 coluna. Se grande, 3 ou 4. */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+/* CARTÃO DO PRODUTO */
+.card-produto {
+    background: var(--card-bg);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.05);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%; /* Garante que todos tenham a mesma altura */
+}
+
+.card-produto:hover {
+    transform: translateY(-5px);
+    border-color: var(--gold);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.card-img-wrapper {
+    height: 220px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.card-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Garante que a imagem preencha sem distorcer */
+    transition: transform 0.5s;
+}
+
+.card-produto:hover img {
+    transform: scale(1.1);
+}
+
+.card-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Ocupa o espaço restante */
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    color: #fff;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.card-price {
+    color: var(--gold);
+    font-weight: 800;
+    font-size: 1.1rem;
+    white-space: nowrap;
+}
+
+.card-desc {
+    color: var(--text-gray);
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    flex-grow: 1; /* Empurra os botões para o fundo do card */
+}
+
+.card-actions {
+    display: flex;
+    gap: 1000px;
+    margin-top: auto;
+}
+
+.btn-avaliar, .btn-pedir {
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.btn-avaliar {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    flex: 1;
+}
+
+.btn-pedir {
+    background: var(--gold);
+    border: none;
+    color: var(--bg-dark);
+    flex: 2;
+}
+
+.btn-pedir:hover, .btn-avaliar:hover {
+    filter: brightness(1.2);
+}

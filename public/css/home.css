@@ -1,0 +1,114 @@
+/* === HERO === */
+.hero {
+    height: 90vh;
+    background: linear-gradient(to bottom, rgba(11,14,17,0.4), rgba(11,14,17,1)),
+                url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1920&q=80');
+    background-size: cover; background-position: center; background-attachment: fixed;
+    display: flex; align-items: center; justify-content: center; text-align: center;
+    margin-top: -80px; padding-top: 80px;
+}
+.hero-content h1 { font-size: 4.5rem; margin-bottom: 1rem; text-shadow: 0 10px 30px rgba(0,0,0,0.8); }
+.hero-content p { font-size: 1.3rem; color: #e0e0e0; margin-bottom: 3rem; }
+
+/* === CARROSSEL (Consertado) === */
+.carousel-wrap {
+    position: relative; max-width: 1000px; height: 500px; margin: 0 auto 80px;
+    border-radius: 20px; overflow: hidden;
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+.carousel-track {
+    display: flex; height: 100%; width: 100%;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.carousel-item {
+    min-width: 100%; height: 100%; position: relative;
+    flex-shrink: 0; /* Impede que o item encolha */
+}
+.carousel-item img {
+    width: 100%; height: 100%; object-fit: cover;
+}
+.carousel-content {
+    position: absolute; bottom: 0; left: 0; width: 100%;
+    background: linear-gradient(to top, #0b0e11, transparent);
+    padding: 100px 40px 40px;
+}
+.carousel-content h3 { font-size: 2.5rem; margin-bottom: 10px; text-shadow: 2px 2px 4px #000; }
+.carousel-content p { font-size: 1.1rem; color: #ddd; max-width: 600px; text-shadow: 1px 1px 2px #000; }
+
+.arrow {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    background: rgba(0,0,0,0.6); color: var(--gold); border: 1px solid var(--gold);
+    width: 50px; height: 50px; border-radius: 50%; font-size: 1.2rem;
+    cursor: pointer; z-index: 10; transition: 0.3s;
+    display: flex; align-items: center; justify-content: center;
+}
+.arrow:hover { background: var(--gold); color: #000; }
+.prev { left: 20px; } .next { right: 20px; }
+
+/* === NOSSA ESSÊNCIA (Novo Design) === */
+.features-section { padding: 40px 0; }
+.features-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px; margin-top: 40px;
+}
+.feature-card {
+    background: rgba(22, 27, 34, 0.6); backdrop-filter: blur(10px);
+    padding: 40px 30px; border-radius: 16px; text-align: center;
+    border: 1px solid rgba(255,255,255,0.05); transition: 0.4s;
+}
+.feature-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--gold);
+    box-shadow: 0 10px 40px rgba(212, 175, 55, 0.15);
+}
+.icon-box {
+    width: 80px; height: 80px; margin: 0 auto 25px;
+    background: rgba(212, 175, 55, 0.1); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--gold);
+}
+.icon-box i { font-size: 2rem; color: var(--gold); }
+.feature-card h3 { font-size: 1.5rem; margin-bottom: 15px; color: #fff; }
+.feature-card p { color: var(--text-gray); line-height: 1.6; }
+
+/* === LORE === */
+.lore-section {
+    margin-top: 100px; padding: 80px 0;
+    background: linear-gradient(to right, rgba(11,14,17,0.95), rgba(11,14,17,0.8)),
+                url('https://images.unsplash.com/photo-1550966871-3ed3c47e2ce2?auto=format&fit=crop&w=1920&q=80');
+    background-size: cover; background-attachment: fixed;
+    border-top: 1px solid rgba(212, 175, 55, 0.1);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+}
+.lore-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.lore-img {
+    width: 100%; border-radius: 20px; border: 2px solid var(--gold);
+    box-shadow: 20px 20px 0 rgba(212, 175, 55, 0.1);
+}
+
+footer {
+    background: #050608; border-top: 1px solid var(--gold);
+    padding: 80px 0 30px; margin-top: auto;
+}
+.footer-grid {
+    display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 50px;
+    max-width: 1200px; margin: 0 auto; padding: 0 20px;
+}
+.footer-info p { color: #888; margin-top: 15px; line-height: 1.6; }
+.footer-links h4, .footer-contact h4 { color: #fff; font-size: 1.2rem; margin-bottom: 25px; border-left: 3px solid var(--gold); padding-left: 10px; }
+.footer-links ul li { margin-bottom: 12px; }
+.footer-links a { color: #aaa; transition: 0.3s; }
+.footer-links a:hover { color: var(--gold); padding-left: 5px; }
+.footer-contact p { color: #aaa; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+.footer-contact i { color: var(--gold); }
+.footer-bottom {
+    text-align: center; margin-top: 60px; padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.05); color: #555; font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .lore-grid, .footer-grid { grid-template-columns: 1fr; }
+    .hero-content h1 { font-size: 3rem; }
+    .carousel-wrap { height: 350px; }
+}

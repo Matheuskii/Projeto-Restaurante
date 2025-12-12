@@ -1,0 +1,19 @@
+.auth-wrapper, .reserva-wrapper {
+    display: flex; justify-content: center; align-items: center;
+    min-height: 100vh; padding-top: 100px; padding-bottom: 50px;
+    background: url('https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat fixed;
+}
+.glass-card {
+    background: rgba(22, 27, 34, 0.85); backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.1); border-radius: 20px;
+    padding: 40px; width: 100%; max-width: 500px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+}
+.glass-card.wide { max-width: 800px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+label { display: block; margin-bottom: 8px; color: var(--text-gray); }
+input, select, textarea {
+    width: 100%; padding: 12px; background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; color: #fff; outline: none; margin-bottom: 20px;
+}
+input:focus { border-color: var(--gold); }
