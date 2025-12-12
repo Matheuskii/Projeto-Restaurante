@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "category": "pratos",
+    "name": "Bife Ancho Premium",
+    "description": "Corte nobre grelhado, acompanha risoto de parmesão.",
+    "price": 89.90,
+    "image": "https://images.unsplash.com/photo-1546241072-48010ad2862c?auto=format&fit=crop&w=500&q=60"
+  },
+  {
+    "id": 2,
+    "category": "pratos",
+    "name": "Salmão Grelhado",
+    "description": "Com molho de maracujá e legumes sautée.",
+    "price": 75.50,
+    "image": "https://images.unsplash.com/photo-1467003909585-2f8a7270028d?auto=format&fit=crop&w=500&q=60"
+  },
+  {
+    "id": 3,
+    "category": "bebidas",
+    "name": "Suco Natural",
+    "description": "Laranja, Limão ou Morango.",
+    "price": 12.00,
+    "image": "https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&w=500&q=60"
+  }
+]
