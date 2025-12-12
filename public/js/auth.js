@@ -22,15 +22,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (response.ok) {
                     mensagem.style.color = '#4CAF50';
-                    mensagem.textContent = data.message;
-
+showToast('Login realizado com sucesso!', 'success');
                     setTimeout(() => {
                         window.location.href = 'index.html';
                     }, 1500);
                 } else {
                     mensagem.style.color = '#ff4444';
-                    mensagem.textContent = data.error || 'Erro ao fazer login';
-                }
+showToast('E-mail ou senha incorretos.', 'error');                }
             } catch (error) {
                 console.error('Erro:', error);
                 mensagem.style.color = '#ff4444';

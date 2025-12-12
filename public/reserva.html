@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservar Mesa - Para Lanches</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    
+    <header>
+        <div class="navbar-container">
+            <div class="logo">Para Lanches</div>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="cardapio.html">Cardápio</a>
+                <a href="reserva.html" style="color:var(--gold)">Reservar</a>
+                
+                <div class="user-menu" id="user-menu-area" style="display:none">
+                    <div class="user-avatar"><i class="fas fa-user"></i></div>
+                    <div class="user-dropdown">
+                        <span class="dropdown-item" id="user-name-display" style="font-weight:bold; color:var(--gold);">Cliente</span>
+                        <a href="minhas-reservas.html" class="dropdown-item">Minhas Reservas</a>
+                        <div class="dropdown-item btn-logout" style="cursor:pointer; color:#ef4444;">Sair</div>
+                    </div>
+                </div>
+
+                <a href="login.html" class="btn-login-nav" id="login-btn-area">Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="reserva-wrapper">
+        <div class="glass-card wide">
+            <div style="text-align: center; margin-bottom: 30px;">
+                <h1>Reservar Mesa</h1>
+                <p style="color: #ccc;">Agende seu horário conosco</p>
+            </div>
+
+            <form id="form-reserva">
+                <div class="form-row">
+                    <div>
+                        <label>Nome do Titular</label>
+                        <input type="text" id="nome" required placeholder="Nome completo">
+                    </div>
+                    <div>
+                        <label>Telefone / Contato</label>
+                        <input type="tel" id="telefone" required placeholder="(11) 99999-9999">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div>
+                        <label>Data</label>
+                        <input type="date" id="data" required>
+                    </div>
+                    <div>
+                        <label>Horário Disponível</label>
+                        <select id="horario" required>
+                            <option value="">Selecione...</option>
+                            <option value="18:00">18:00 - Abertura</option>
+                            <option value="19:00">19:00</option>
+                            <option value="19:30">19:30</option>
+                            <option value="20:00">20:00</option>
+                            <option value="20:30">20:30</option>
+                            <option value="21:00">21:00</option>
+                            <option value="21:30">21:30</option>
+                            <option value="22:00">22:00</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div>
+                        <label>Pessoas</label>
+                        <select id="pessoas" required>
+                            <option value="1">1 Pessoa</option>
+                            <option value="2" selected>2 Pessoas</option>
+                            <option value="3">3 Pessoas</option>
+                            <option value="4">4 Pessoas</option>
+                            <option value="5">5 Pessoas</option>
+                            <option value="6">6 - 8 Pessoas</option>
+                            <option value="9">Grupo Grande (9+)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Preferência</label>
+                        <select id="preferencia">
+                            <option value="salao">Salão Principal</option>
+                            <option value="janela">Perto da Janela</option>
+                            <option value="externa">Área Externa</option>
+                        </select>
+                    </div>
+                </div>
+
+                <label>Observações (Opcional)</label>
+                <textarea id="observacoes" rows="2" placeholder="Ex: Aniversário, precisa de cadeirão..."></textarea>
+
+                <input type="hidden" id="email" value="cliente@logado.com"> 
+
+                <button type="submit" class="btn-primary" style="margin-top: 10px;">
+                    Confirmar Agendamento
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/user-profile.js"></script> <script src="js/reservation.js"></script>  </body>
+</html>

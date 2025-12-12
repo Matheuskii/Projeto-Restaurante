@@ -3,45 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GastroCode Restaurante</title>
+    <title>Para Lanches - Alta Gastronomia</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/components.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
+    
+    <header>
+        <div class="navbar-container">
+            <div class="logo">Para Lanches</div>
+            <nav class="nav-links">
+                <a href="index.html" style="color:var(--gold)">Home</a>
+                <a href="cardapio.html">Cardápio</a>
+                <a href="reserva.html">Reservar</a>
+                <a href="minhas-reservas.html">Minhas Reservas</a>
+                
+                <div class="user-menu" id="user-menu-area">
+                    <div class="user-avatar"><i class="fas fa-user"></i></div>
+                    <div class="user-dropdown">
+                        <span class="dropdown-item" id="user-name-display" style="font-weight:bold; color:var(--gold);">Usuário</span>
+                        <a href="minhas-reservas.html" class="dropdown-item"><i class="fas fa-calendar-alt"></i> Reservas</a>
+                        <div class="dropdown-item btn-logout" style="cursor:pointer; color:#ef4444;"><i class="fas fa-sign-out-alt"></i> Sair</div>
+                    </div>
+                </div>
 
-    <header class="navbar">
-        <div class="container">
-            <h1 class="logo">Gastro<span>Code</span></h1>
-            <nav>
-                <ul>
-                    <li><a href="#home">Início</a></li>
-                    <li><a href="#menu">Cardápio</a></li>
-                    <li><a href="#contact">Contato</a></li>
-                </ul>
+                <a href="login.html" class="btn-login-nav" id="login-btn-area">Login</a>
             </nav>
         </div>
     </header>
 
-    <section id="home" class="hero">
+  <section class="hero">
         <div class="hero-content">
-            <h2>Experiência Gastronômica Única</h2>
-            <p>Sabores inesquecíveis preparados com ingredientes selecionados.</p>
-            <a href="#menu" class="btn-primary">Ver Cardápio</a>
+            <h1>Sabor que Inspira</h1>
+            <p>Descubra uma experiência gastronômica onde cada detalhe é preparado para despertar seus sentidos.</p>
+            <a href="#pratos-semana" class="btn-primary">Ver Especiais</a>
         </div>
     </section>
 
-    <section id="menu" class="menu-section container">
-        <h2 class="section-title">Nosso Cardápio</h2>
-        <div id="menu-grid" class="grid-container">
-            <p class="loading">Carregando delícias...</p>
+    <section id="pratos-semana" class="container">
+        <h2 class="section-title">Especiais da Semana</h2>
+        <div class="carousel-container">
+            <div class="carousel-slide" id="carousel-slide">
+                <div class="carousel-item">
+                    <img src="https://images.unsplash.com/photo-1546241072-48010ad2862c?auto=format&fit=crop&w=800&q=80" alt="Prato 1">
+                    <div class="carousel-caption">
+                        <h3>Bife Ancho Premium</h3>
+                        <p>O corte mais suculento com nosso molho secreto.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=800&q=80" alt="Prato 2">
+                    <div class="carousel-caption">
+                        <h3>Semana Italiana</h3>
+                        <p>Massas frescas feitas à mão todos os dias.</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?auto=format&fit=crop&w=800&q=80" alt="Prato 3">
+                    <div class="carousel-caption">
+                        <h3>Frutos do Mar</h3>
+                        <p>A frescura do oceano direto para sua mesa.</p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-btn prev-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+            <button class="carousel-btn next-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </section>
+
+    <script>
+        const slide = document.getElementById('carousel-slide');
+        const images = document.querySelectorAll('.carousel-item');
+        let counter = 0;
+        const size = images[0].clientWidth;
+
+        document.getElementById('nextBtn').addEventListener('click', () => {
+            if (counter >= images.length - 1) counter = -1;
+            counter++;
+            slide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+        });
+
+        document.getElementById('prevBtn').addEventListener('click', () => {
+            if (counter <= 0) counter = images.length;
+            counter--;
+            slide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+        });
+        
+        // Auto play
+        setInterval(() => {
+            if (counter >= images.length - 1) counter = -1;
+            counter++;
+            slide.style.transform = 'translateX(' + (-size * counter) + 'px)';
+        }, 5000);
+    </script>
+    <section class="container">
+        <h2 class="section-title">Nossa Essência</h2>
+        <p class="section-subtitle">O que torna a Para Lanches única em São Paulo</p>
+        
+        <div class="features-grid">
+            <div class="feature-item">
+                <i class="fas fa-leaf feature-icon"></i>
+                <h3>Ingredientes Frescos</h3>
+                <p>Selecionamos produtores locais para garantir o sabor mais puro em cada prato.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-wine-glass-alt feature-icon"></i>
+                <h3>Carta de Vinhos</h3>
+                <p>Uma seleção exclusiva para harmonizar perfeitamente com sua escolha.</p>
+            </div>
+            <div class="feature-item">
+                <i class="fas fa-star feature-icon"></i>
+                <h3>Chefs Premiados</h3>
+                <p>Técnica e paixão se encontram na nossa cozinha de alto padrão.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="container">
+        <h2 class="section-title">Favoritos do Chef</h2>
+        <div class="menu-grid">
+            <div class="card-produto">
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1546241072-48010ad2862c?auto=format&fit=crop&w=500&q=60" alt="Bife Ancho">
+                </div>
+                <div class="card-body">
+                    <div class="card-header">
+                        <h3 class="card-title">Bife Ancho Premium</h3>
+                        <span class="card-price">R$ 89,90</span>
+                    </div>
+                    <p class="card-desc">Corte nobre grelhado na perfeição, acompanhado de risoto de parmesão.</p>
+                    <a href="cardapio.html" class="btn-add">Ver Cardápio Completo</a>
+                </div>
+            </div>
+            <div class="card-produto">
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1467003909585-2f8a7270028d?auto=format&fit=crop&w=500&q=60" alt="Salmão">
+                </div>
+                <div class="card-body">
+                    <div class="card-header">
+                        <h3 class="card-title">Salmão Grelhado</h3>
+                        <span class="card-price">R$ 75,50</span>
+                    </div>
+                    <p class="card-desc">Filé fresco com molho de maracujá e legumes sautée crocantes.</p>
+                    <a href="cardapio.html" class="btn-add">Ver Cardápio Completo</a>
+                </div>
+            </div>
+            <div class="card-produto">
+                <div class="card-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=500&q=60" alt="Massa">
+                </div>
+                <div class="card-body">
+                    <div class="card-header">
+                        <h3 class="card-title">Fettuccine Trufado</h3>
+                        <span class="card-price">R$ 68,00</span>
+                    </div>
+                    <p class="card-desc">Massa fresca artesanal com creme de cogumelos e azeite de trufas brancas.</p>
+                    <a href="cardapio.html" class="btn-add">Ver Cardápio Completo</a>
+                </div>
+            </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2025 GastroCode Restaurante. Feito com Node.js.</p>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3 class="logo">Para Lanches</h3>
+                <p>Transformando refeições em memórias inesquecíveis desde 2025.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Links Rápidos</h3>
+                <a href="index.html">Home</a>
+                <a href="cardapio.html">Cardápio</a>
+                <a href="reserva.html">Reservas</a>
+            </div>
+            <div class="footer-col">
+                <h3>Contato</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Rua Augusta, 1500 - SP</p>
+                <p><i class="fas fa-phone"></i> (11) 99999-9999</p>
+                <p><i class="fas fa-envelope"></i> contato@paralanches.com</p>
+            </div>
+        </div>
+        <div style="text-align:center; margin-top:40px; color:#555; font-size:0.8rem;">
+            &copy; 2025 Para Lanches. Todos os direitos reservados.
+        </div>
     </footer>
 
+  <script src="js/toast.js"></script>
+
+    <script src="js/main.js"></script>
+    <script src="js/user-profile.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>

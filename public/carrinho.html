@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Carrinho - Para Lanches</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    
+    <header>
+        <div class="navbar-container">
+            <div class="logo">Para Lanches</div>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="cardapio.html">Cardápio</a>
+                <a href="carrinho.html" style="color:var(--gold)">Carrinho</a>
+                <a href="reserva.html">Reservar</a>
+                <a href="index.html" class="btn-login-nav">Sair</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="carrinho-container">
+        <h2 class="section-title">Seu Pedido</h2>
+        
+        <div class="carrinho-grid">
+            <div class="carrinho-lista" id="lista-itens">
+                <p style="text-align:center; padding:20px;">Seu carrinho está vazio.</p>
+                </div>
+
+            <div class="carrinho-resumo">
+                <h3>Resumo</h3>
+                <div class="resumo-linha">
+                    <span>Subtotal</span>
+                    <span id="subtotal">R$ 0,00</span>
+                </div>
+                <div class="resumo-linha">
+                    <span>Taxa de Serviço (10%)</span>
+                    <span id="taxa">R$ 0,00</span>
+                </div>
+                <div class="resumo-linha resumo-total">
+                    <span>Total</span>
+                    <span id="total">R$ 0,00</span>
+                </div>
+               <button class="btn-primary" onclick="finalizarPedido()">
+    Enviar para Cozinha
+</button>
+            </div>
+        </div>
+    </div>
+<script src="js/toast.js"></script>
+
+    <script src="js/user-profile.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/rating.js"></script>
+</body>
+</html>
+</body>
+</html>

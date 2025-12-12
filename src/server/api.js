@@ -3,160 +3,154 @@ const express = require('express');
 const session = require('express-session');
 const cors = require('cors');
 const path = require('path');
+const fs = require('fs').promises; // Usar promises para ler arquivos
 
 const app = express();
 
-// Middlewares simples
-app.use(cors({
-    origin: ['http://localhost:3000', 'http://localhost:8080'],
-    credentials: true
-}));
+// --- CONFIGURAÇÕES ---
+app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Sessão
 app.use(session({
-    secret: 'restaurante-key',
+    secret: 'segredo-do-restaurante-tcc',
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: false }
+    cookie: { maxAge: 24 * 60 * 60 * 1000 } // 24 horas
 }));
 
-// Servir arquivos estáticos (site)
-app.use(express.static(path.join(__dirname, '../../')));
+// Servir arquivos estáticos (HTML, CSS, JS, Imagens)
+// O 'public' é a raiz do site agora.
+app.use(express.static(path.join(__dirname, '../../public')));
 
-// Usuários predefinidos
-const users = [
-    {
-        id: 1,
-        nome: 'Matheus',
-        email: 'matheus@email.com',
-        senha: 'Matheus123'
-    },
-    {
-        id: 2,
-        nome: 'Guilherme',
-        email: 'guilherme@email.com',
-        senha: 'Guilherme123'
+// --- FUNÇÕES AUXILIARES (LER/GRAVAR JSON) ---
+const DATA_DIR = path.join(__dirname, '../../data');
+
+async function lerJSON(arquivo) {
+    try {
+        const data = await fs.readFile(path.join(DATA_DIR, arquivo), 'utf8');
+        return JSON.parse(data);
+    } catch (erro) {
+        return []; // Se der erro ou arquivo não existir, retorna array vazio
     }
-];
+}
 
-// ===== LOGIN =====
-app.post('/api/login', (req, res) => {
-    const { email, senha } = req.body;
-    
-    if (!email || !senha) {
-        return res.status(400).json({ error: 'E-mail e senha são obrigatórios' });
-    }
+async function gravarJSON(arquivo, dados) {
+    await fs.writeFile(path.join(DATA_DIR, arquivo), JSON.stringify(dados, null, 2));
+}
 
-    const user = users.find(u => u.email === email && u.senha === senha);
-    
-    if (!user) {
-        return res.status(401).json({ error: 'E-mail ou senha inválidos' });
-    }
+// --- ROTAS DE DADOS (API) ---
 
-    const { senha: _, ...userWithoutPassword } = user;
-    req.session.user = userWithoutPassword;
-    
-    res.json({ 
-        ok: true, 
-        message: `Bem-vindo, ${user.nome}!`, 
-        user: userWithoutPassword 
-    });
+// 1. Rota do Cardápio (Lê menu.json)
+app.get('/api/menu', async (req, res) => {
+    const menu = await lerJSON('menu.json');
+    res.json(menu);
 });
 
-// ===== VERIFICAR AUTENTICAÇÃO =====
+// 2. Login (Lê usuarios.json)
+app.post('/api/login', async (req, res) => {
+    const { email, senha } = req.body;
+    const usuarios = await lerJSON('usuarios.json');
+
+    const user = usuarios.find(u => u.email === email && u.senha === senha);
+
+    if (!user) {
+        return res.status(401).json({ error: 'E-mail ou senha incorretos' });
+    }
+
+    req.session.user = { id: user.id, nome: user.nome, email: user.email };
+    res.json({ ok: true, message: 'Login realizado!', user: req.session.user });
+});
+
+// 3. Cadastro (Grava em usuarios.json)
+app.post('/api/cadastro', async (req, res) => {
+    const { nome, email, senha } = req.body;
+    const usuarios = await lerJSON('usuarios.json');
+
+    if (usuarios.find(u => u.email === email)) {
+        return res.status(400).json({ error: 'E-mail já cadastrado' });
+    }
+
+    const novoUsuario = { id: Date.now(), nome, email, senha };
+    usuarios.push(novoUsuario);
+    await gravarJSON('usuarios.json', usuarios);
+
+    res.json({ ok: true, message: 'Cadastro realizado com sucesso!' });
+});
+
+// 4. Check Auth (Verifica se está logado)
 app.get('/api/check-auth', (req, res) => {
     if (req.session.user) {
-        return res.json({ logado: true, ok: true, user: req.session.user });
+        res.json({ logado: true, user: req.session.user });
+    } else {
+        res.json({ logado: false });
     }
-    res.json({ logado: false, ok: false });
 });
 
-// ===== LOGOUT =====
+// 5. Logout
 app.post('/api/logout', (req, res) => {
-    req.session.destroy((err) => {
-        if (err) {
-            return res.status(500).json({ error: 'Erro ao fazer logout' });
-        }
-        res.json({ ok: true, message: 'Logout realizado com sucesso' });
-    });
+    req.session.destroy();
+    res.json({ ok: true });
 });
 
-// Simulação de banco de dados
-let reservas = [];
-let avaliacoes = [];
-
-// ===== RESERVAS =====
-app.post('/api/reservas', (req, res) => {
+// 6. Criar Reserva (Grava em reservas.json)
+app.post('/api/reservas', async (req, res) => {
     const { nome, email, data, horario, pessoas, telefone, preferencia, observacoes } = req.body;
     
-    if (!nome || !email || !data || !horario || !pessoas) {
-        return res.status(400).json({ error: 'Preenchimento obrigatório: nome, email, data, horário e pessoas' });
+    // Validação básica
+    if(!nome || !data || !pessoas) {
+        return res.status(400).json({ error: 'Dados incompletos.' });
     }
 
-    const reserva = {
+    const reservas = await lerJSON('reservas.json');
+    
+    const novaReserva = {
         id: Date.now(),
-        nome,
-        email,
-        data,
-        horario,
-        pessoas,
-        telefone: telefone || '',
-        preferencia: preferencia || '',
-        observacoes: observacoes || '',
-        status: 'pendente',
-        criada_em: new Date().toISOString()
+        usuarioId: req.session.user ? req.session.user.id : null, // Vincula ao usuário se logado
+        nome, email, telefone, data, horario, pessoas, preferencia, observacoes,
+        status: 'pendente'
     };
 
-    reservas.push(reserva);
-    res.status(201).json({ ok: true, message: 'Reserva criada com sucesso', reserva });
+    reservas.push(novaReserva);
+    await gravarJSON('reservas.json', reservas);
+
+    res.status(201).json({ ok: true, message: 'Reserva solicitada!', reserva: novaReserva });
 });
 
-app.get('/api/reservas', (req, res) => {
-    res.json(reservas);
-});
+// 7. Listar Minhas Reservas (Lê reservas.json)
+app.get('/api/reservas', async (req, res) => {
+    if (!req.session.user) return res.status(401).json({ error: 'Não autorizado' });
 
-app.get('/api/reservas/:id', (req, res) => {
-    const reserva = reservas.find(r => r.id === parseInt(req.params.id));
+    const reservas = await lerJSON('reservas.json');
+    // Filtra apenas as reservas do usuário logado (pelo email ou ID)
+    const minhasReservas = reservas.filter(r => r.email === req.session.user.email);
     
-    if (!reserva) {
-        return res.status(404).json({ error: 'Reserva não encontrada' });
-    }
-    
-    res.json(reserva);
+    res.json(minhasReservas);
 });
 
-// ===== AVALIAÇÕES =====
-app.post('/api/avaliacoes/:pratoId', (req, res) => {
+// 8. Avaliações (Lê e Grava avaliacoes.json)
+app.post('/api/avaliacoes/:pratoId', async (req, res) => {
+    if (!req.session.user) return res.status(401).json({ mensaje: 'Faça login para avaliar.' });
+
     const { nota, descricao } = req.body;
     const pratoId = req.params.pratoId;
     
-    if (!nota || !pratoId) {
-        return res.status(400).json({ mensagem: 'Nota e prato são obrigatórios' });
-    }
-
-    if (!req.session.user) {
-        return res.status(401).json({ mensagem: 'Usuário não autenticado' });
-    }
-
-    const avaliacao = {
+    const avaliacoes = await lerJSON('avaliacoes.json');
+    
+    const novaAvaliacao = {
         id: Date.now(),
+        pratoId,
         usuario: req.session.user.nome,
-        email: req.session.user.email,
-        nota: parseInt(nota),
-        descricao: descricao || '',
-        pratoId: parseInt(pratoId),
+        nota,
+        descricao,
         data: new Date().toISOString()
     };
 
-    avaliacoes.push(avaliacao);
-    res.status(201).json({ ok: true, mensagem: 'Avaliação criada com sucesso', avaliacao });
-});
+    avaliacoes.push(novaAvaliacao);
+    await gravarJSON('avaliacoes.json', avaliacoes);
 
-app.get('/api/avaliacoes/:pratoId', (req, res) => {
-    const pratoId = parseInt(req.params.pratoId);
-    const avaliacoesPrato = avaliacoes.filter(a => a.pratoId === pratoId);
-    
-    res.json(avaliacoesPrato);
+    res.json({ ok: true });
 });
 
 module.exports = app;
